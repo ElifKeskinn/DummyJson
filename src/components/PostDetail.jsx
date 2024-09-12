@@ -8,7 +8,7 @@ import { CommentContext } from './CommentContext';
 export default function PostDetail({ postId, setPage }) {
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
-  const { comments: localComments, addComment } = useContext(CommentContext);
+  const { comments: localComments, addComment, likeComment } = useContext(CommentContext);
   const [commentLikes, setCommentLikes] = useState({});
 
   useEffect(() => {
@@ -20,7 +20,6 @@ export default function PostDetail({ postId, setPage }) {
       .then(response => response.json())
       .then(data => setComments(data.comments));
   }, [postId]);
-
 
   const handleAddComment = (username, text) => {
     const newComment = {
@@ -38,14 +37,12 @@ export default function PostDetail({ postId, setPage }) {
       ...prevLikes,
       [commentId]: (prevLikes[commentId] || 0) + 1
     }));
+    likeComment(commentId);  
   };
-
 
   if (!post) return <p>Loading...</p>;
 
-
-
-
+  const filteredLocalComments = localComments.filter(comment => comment.postId === postId);
 
   return (
     <div className="post-detail-container">
@@ -66,7 +63,7 @@ export default function PostDetail({ postId, setPage }) {
       </div>
       <hr />
       <div className="comments-container">
-        <h3>Comments ({comments.length + localComments.length})</h3>
+        <h3>Comments ({comments.length + filteredLocalComments.length})</h3>
         <ul>
           {comments.map(comment => (
             <div key={comment.id} className="comment-item">
@@ -78,7 +75,7 @@ export default function PostDetail({ postId, setPage }) {
               </div>
             </div>
           ))}
-          {localComments.map(comment => (
+          {filteredLocalComments.map(comment => (
             <div key={comment.id} className="comment-item">
               <span className="comment-username">{comment.user.username} </span>
               <span className="comment-body"> &nbsp; {comment.body} &nbsp; </span>
@@ -106,8 +103,7 @@ export default function PostDetail({ postId, setPage }) {
           ))}
         </ul>
       </div>
-         <CommentForm onAddComment={handleAddComment} />
-
+      <CommentForm onAddComment={handleAddComment} />
     </div>
   );
 }
