@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import Posts from "./Posts";
 import './styles/PostDetail.css';
-import { FaThumbsUp, FaThumbsDown, FaEye } from 'react-icons/fa'; //küçük bir dependency
+import { FaThumbsUp, FaThumbsDown, FaEye } from 'react-icons/fa'; 
 import CommentForm from './CommentForm';
 import { CommentContext } from './CommentContext';
 
@@ -16,7 +16,7 @@ export default function PostDetail({ postId, setPage }) {
       .then(response => response.json())
       .then(data => setPost(data));
 
-    fetch(`https://dummyjson.com/comments?postId=${postId}`)
+    fetch(`https://dummyjson.com/posts/${postId}/comments`)
       .then(response => response.json())
       .then(data => setComments(data.comments));
   }, [postId]);
@@ -28,6 +28,7 @@ export default function PostDetail({ postId, setPage }) {
       user: { username },
       body: text,
       likes: 0,
+      postId
     };
     addComment(newComment);
   };
@@ -41,6 +42,9 @@ export default function PostDetail({ postId, setPage }) {
 
 
   if (!post) return <p>Loading...</p>;
+
+
+
 
 
   return (
