@@ -1,0 +1,115 @@
+.product-detail-container {
+    padding: 20px;
+    background-color: #1e1e1e; 
+    color: #333; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #070707; 
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: color 0.3s, transform 0.3s;
+  }
+  
+  .back-link:hover {
+    color: #070707; 
+    transform: scale(1.05); 
+  }
+  
+  .product-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .product-detail-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-detail-info {
+    max-width: 800px;
+    width: 100%;
+    padding: 20px;
+    background-color: #1e1e1e; 
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #e0e0e0; 
+  }
+  
+  .product-detail-title {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 15px;
+  }
+  
+  .product-detail-description {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
+  
+  .product-detail-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .product-detail-box {
+    background-color: #2a2a2a; 
+    border-radius: 8px;
+    padding: 15px;
+    width: 150px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-detail-box p {
+    margin: 0;
+    font-size: 1rem;
+    color: #ffffff;
+  }
+  
+  .product-detail-box span {
+    font-weight: bold;
+  }
+  
+  @media (max-width: 768px) {
+    .product-detail {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .product-detail-info {
+      padding: 15px;
+      width: 100%;
+    }
+  
+    .product-detail-title {
+      font-size: 1.5rem;
+    }
+  
+    .product-detail-description {
+      font-size: 1rem;
+    }
+  
+    .product-detail-details {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .product-detail-box {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+  
+  
